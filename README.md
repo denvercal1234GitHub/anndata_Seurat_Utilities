@@ -28,21 +28,7 @@ which:
 - **Ensures all metadata is stored in a SeuratDisk-compatible form**
 - **Writes `.h5ad` cleanly** using `convert_strings_to_categoricals=False` when possible
 
-The resulting `.h5ad` file loads reliably in:
-
-```r
-SeuratDisk::Convert("file.h5ad", dest = "h5seurat", overwrite = TRUE)
-LoadH5Seurat("file.h5seurat", verbose = TRUE,
-                    assays = "RNA",
-                    reductions = NULL,
-                    graphs = NULL,
-                    neighbors = NULL,
-                    images = FALSE) 
-
-```
-
-_Note from https://mojaveazure.github.io/seurat-disk/articles/convert-anndata.html#converting-from-anndata-to-seurat-via-h5seurat-1 that "The final main parameter is the images parameter; this parameter controls which spatial image data is loaded. All spatial image data are marked global by default, so they are loaded whether or not their associated assays are loaded as well. The images parameter has three special values: NULL for all spatial image data (the default), NA for global spatial image data (typically the same as NULL), or FALSE for no spatial image data."_
-
+The output h5ad can be used as input to Convert and LoadH5Seurat. See below for an example. 
 
 ## Installation
 
@@ -75,7 +61,6 @@ anndata >= 0.9
 pandas
 numpy
 scipy
-mygene (only required for optional gene-mapping utilities)
 
 
 
@@ -109,6 +94,22 @@ print("Wrote cleaned Seurat-ready file: cleaned_for_seurat.h5ad")
 ## Now proceed in R with SeuratDisk::Convert and LoadH5Seurat
 
 ```
+
+The resulting `.h5ad` file loads reliably in:
+
+```r
+SeuratDisk::Convert("file.h5ad", dest = "h5seurat", overwrite = TRUE)
+LoadH5Seurat("file.h5seurat", verbose = TRUE,
+                    assays = "RNA",
+                    reductions = NULL,
+                    graphs = NULL,
+                    neighbors = NULL,
+                    images = FALSE) 
+
+```
+
+_Note from https://mojaveazure.github.io/seurat-disk/articles/convert-anndata.html#converting-from-anndata-to-seurat-via-h5seurat-1 that "The final main parameter is the images parameter; this parameter controls which spatial image data is loaded. All spatial image data are marked global by default, so they are loaded whether or not their associated assays are loaded as well. The images parameter has three special values: NULL for all spatial image data (the default), NA for global spatial image data (typically the same as NULL), or FALSE for no spatial image data."_
+
 
 ## Why using this package?
 
@@ -158,5 +159,4 @@ Nguyen, Q. (2025). anndata_Seurat_Utilities.
 https://github.com/denvercal1234GitHub/anndata_Seurat_Utilities
 ```
 
-A CITATION.cff file will be added in a future release.
 
