@@ -1,0 +1,40 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+title: "anndata_Seurat_Utilities"
+abstract: >
+  Utilities for preparing AnnData (.h5ad) files for Seurat/SeuratDisk conversion,
+  ensuring compatibility by sanitizing metadata, fixing pandas extension dtypes,
+  removing empty columns, and producing Seurat-friendly HDF5 structures.
+
+authors:
+  - family-names: "Nguyen"
+    given-names: "Quang"
+    email: "quang.n.nguyen@alumni.duke.edu"
+    affiliation: "Oxford / Duke Alumni"
+
+repository-code: "https://github.com/denvercal1234GitHub/anndata_Seurat_Utilities"
+url: "https://github.com/denvercal1234GitHub/anndata_Seurat_Utilities"
+
+keywords:
+  - AnnData
+  - Seurat
+  - SeuratDisk
+  - single-cell
+  - Python
+  - R
+  - h5ad
+  - HDF5
+
+license: "MIT"
+version: "0.1.0"
+
+date-released: "2025-02-10"
+
+preferred-citation:
+  type: software
+  title: "anndata_Seurat_Utilities"
+  authors:
+    - family-names: "Nguyen"
+      given-names: "Quang"
+  url: "https://github.com/denvercal1234GitHub/anndata_Seurat_Utilities"
+  notes: "Python utilities for preparing AnnData for SeuratDisk interoperability."
