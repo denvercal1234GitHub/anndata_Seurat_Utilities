@@ -48,26 +48,14 @@ _Note from https://mojaveazure.github.io/seurat-disk/articles/convert-anndata.ht
 
 Current version: 0.1.0
 
-### Install from TestPyPI (for pre-release testing)
-```bash
-python -m venv venv && source venv/bin/activate
-pip install --upgrade pip
-
-pip install \
-  --index-url https://test.pypi.org/simple/ \
-  --extra-index-url https://pypi.org/simple \
-  anndata-seurat-utilities==0.1.0
-
-```
-
-Why the extra index URL?
-TestPyPI does not mirror PyPI. Dependencies such as anndata>=0.9 must come from PyPI.
 
 ### Install official release from PyPI
 
 ```bash
 
 pip install anndata-seurat-utilities
+## Quick test; if printing version then succeeded
+python -c "import anndata_seurat_utils; print(anndata_seurat_utils.__version__)"
 
 ```
 
@@ -81,17 +69,14 @@ pip install -e .
 pytest -q
 ```
 
-### Tests
 
-```bash
-# create virtual env
-python -m venv venv
-source venv/bin/activate
-# install deps
-pip install -r requirements.txt
-# run pytest
-pytest -q
-```
+## Requirements
+anndata >= 0.9
+pandas
+numpy
+scipy
+mygene (only required for optional gene-mapping utilities)
+
 
 
 
@@ -155,16 +140,6 @@ Fully-NA metadata columns become incomplete HDF5 groups →
 SeuratDisk error: "Missing required datasets 'levels' and 'values'".
 
 This utility fixes all of these issues.
-
-
-
-## Requirements
-anndata >= 0.9
-pandas
-numpy
-scipy
-mygene (only required for optional gene-mapping utilities)
-
 
 
 
