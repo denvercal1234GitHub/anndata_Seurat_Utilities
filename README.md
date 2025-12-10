@@ -39,7 +39,7 @@ The output h5ad can be used as input to Convert and LoadH5Seurat. See below for 
 
 ## Installation
 
-Current version: 0.1.0
+Current version: 0.1.1
 
 
 ### Install official release from PyPI
