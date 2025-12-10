@@ -18,15 +18,21 @@ def _is_all_missing_series(ser: pd.Series) -> bool:
     else:
         return ser.isna().all()
 
+from pandas.api.types import CategoricalDtype
+
 def _is_risky_extension_dtype(ser: pd.Series) -> bool:
-    dt = str(ser.dtype)
-    if dt.startswith("boolean") or dt.startswith("Int64") or "Nullable" in dt:
+    dt = ser.dtype
+    # Pandas extension types that serialize as masked arrays
+    if str(dt).startswith("boolean") or str(dt).startswith("Int64") or "Nullable" in str(dt):
         return True
-    if pd.api.types.is_categorical_dtype(ser) or pd.api.types.is_object_dtype(ser):
+    # Modern categorical check
+    if isinstance(dt, CategoricalDtype) or pd.api.types.is_object_dtype(ser):
         return True
-    if dt == "string":
+    # Pandas string extension dtype
+    if str(dt) == "string":
         return True
     return False
+
 
 def _serializable_series(ser: pd.Series, missing_to_empty_str: bool = True) -> pd.Series:
     if pd.api.types.is_integer_dtype(ser) or pd.api.types.is_float_dtype(ser) or pd.api.types.is_bool_dtype(ser):
@@ -61,10 +67,13 @@ def _clean_dataframe_for_h5ad(df: pd.DataFrame, missing_to_empty_str: bool = Tru
             dropped.append(col)
             del df_clean[col]
             continue
-        if pd.api.types.is_categorical_dtype(ser):
+        from pandas.api.types import CategoricalDtype
+        
+        if isinstance(ser.dtype, CategoricalDtype):
             df_clean[col] = ser.astype(str).fillna("" if missing_to_empty_str else "nan").values
             converted.append(col)
             continue
+
         if _is_risky_extension_dtype(ser):
             df_clean[col] = _serializable_series(ser, missing_to_empty_str=missing_to_empty_str).values
             converted.append(col)
