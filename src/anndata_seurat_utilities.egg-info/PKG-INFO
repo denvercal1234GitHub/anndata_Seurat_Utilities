@@ -1,0 +1,44 @@
+Metadata-Version: 2.4
+Name: anndata-seurat-utilities
+Version: 0.1.0
+Summary: Utilities to prepare AnnData files for Seurat/SeuratDisk conversion.
+Home-page: https://github.com/denvercal1234GitHub/anndata_Seurat_Utilities
+Author: Quang Nguyen
+Author-email: quang.n.nguyen@alumni.duke.edu
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: anndata>=0.9
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: mygene
+Dynamic: license-file
+
+# anndata_Seurat_Utilities
+
+Utilities to prepare AnnData files for Seurat/SeuratDisk conversion and safe exchange between Python and R.
+
+Includes the robust `prepare_adata_for_seurat_drop_empty_v3()` function which:
+
+- drops empty obs/var columns (records them in `.uns`),
+- sanitizes obs/var names (avoids `/` and other HDF5 path-breaking chars),
+- converts pandas extension dtypes (nullable booleans/Int64/categorical) into atomic types,
+- optionally drops heavy layers like `counts_mouse`,
+- writes `.h5ad` safe for `SeuratDisk::Convert()` and `LoadH5Seurat()`.
+
+## Quick install
+
+```bash
+# create virtual env
+python -m venv venv
+source venv/bin/activate
+# install deps
+pip install -r requirements.txt
+# run pytest
+pytest -q
