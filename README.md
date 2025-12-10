@@ -13,6 +13,10 @@ Includes the robust `prepare_adata_for_seurat_drop_empty_v3()` function which:
 ## Quick install
 
 ```bash
+# create virtual env
 python -m venv venv
 source venv/bin/activate
+# install deps
 pip install -r requirements.txt
+# run pytest
+pytest -q
