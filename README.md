@@ -7,7 +7,7 @@ pip install anndata-seurat-utilities
 ```
 
 
-Utilities to prepare **AnnData (.h5ad)** files for **Seurat / SeuratDisk** conversion and safe exchange between **Python** and **R** single-cell analysis workflows.
+Utilities to prepare **AnnData (.h5ad)** files for **Seurat / SeuratDisk** conversion and safe exchange from **Python** to **R** in the single-cell analysis workflows.
 
 <!-- Uncomment these once CI & PyPI are active -->
 <!-- 
@@ -25,17 +25,17 @@ This library provides the robust function:
 
 which:
 
-- **Drops empty `obs` / `var` columns** (with provenance stored in `.uns`)
+- **Drops all empty `obs` / `var` columns** (with provenance stored in `.uns`)
 - **Sanitizes column names** (avoids `/`, spaces, commas, semicolons, etc.)  
   → prevents accidental HDF5 path splitting (common SeuratDisk failure mode)
 - **Converts pandas extension dtypes**  
   (`boolean`, `Int64`, `string`, `Categorical`, masked arrays)  
   → into safe atomic dtypes so HDF5 does *not* create `{mask, values}` groups
-- **Optionally drops heavy layers** like `counts_mouse`
+- **Optionally drops heavy layers, obs, obsm, obsp** like `counts_mouse`
 - **Ensures all metadata is stored in a SeuratDisk-compatible form**
 - **Writes `.h5ad` cleanly** using `convert_strings_to_categoricals=False` when possible
 
-The output h5ad can be used as input to Convert and LoadH5Seurat. See below for an example. 
+Note the original adata is not modified or loaded into your environment, but it is saved in your specified directory. The output h5ad can be used as input to Convert and LoadH5Seurat. See below for an example. 
 
 ## Installation
 
