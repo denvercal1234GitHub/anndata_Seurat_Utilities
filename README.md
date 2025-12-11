@@ -35,7 +35,7 @@ which:
 - **Ensures all metadata is stored in a SeuratDisk-compatible form**
 - **Writes `.h5ad` cleanly** using `convert_strings_to_categoricals=False` when possible
 
-Note the original adata is not modified or loaded into your environment, but it is saved in your specified directory. The output h5ad can be used as input to Convert and LoadH5Seurat. See below for an example. 
+Note the original adata is not modified and the resulting h5ad is not loaded into your environment, but the resulting h5ad is saved in your specified directory (unless you assign the function call a variable). The output h5ad can be used as input to Convert and LoadH5Seurat. See below for an example. 
 
 ## Installation
 
@@ -105,7 +105,7 @@ prepare_adata_for_seurat_drop_empty_v3(
 
 print("Wrote cleaned Seurat-ready file: cleaned_for_seurat.h5ad")
 
-## Now proceed in R with SeuratDisk::Convert and LoadH5Seurat
+## Now proceed in R with SeuratDisk::Convert and LoadH5Seurat using the saved h5ad object
 
 ```
 
@@ -121,7 +121,7 @@ LoadH5Seurat("file.h5seurat", verbose = TRUE,
                     neighbors = NULL,
                     images = FALSE) 
 
-### If you run into memory issues, try running DietSeurat next before further downstream processing, e.g., Azimuth etc.
+### If you run into memory issues, try running DietSeurat and/or set options(future.globals.maxSize = 8 * 1024^3) to allocate here 8GB for example for your current session before further downstream processing, e.g., Azimuth etc.
 ```
 
 _Note from https://mojaveazure.github.io/seurat-disk/articles/convert-anndata.html#converting-from-anndata-to-seurat-via-h5seurat-1 that "The final main parameter is the images parameter; this parameter controls which spatial image data is loaded. All spatial image data are marked global by default, so they are loaded whether or not their associated assays are loaded as well. The images parameter has three special values: NULL for all spatial image data (the default), NA for global spatial image data (typically the same as NULL), or FALSE for no spatial image data."_
