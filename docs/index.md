@@ -20,6 +20,6 @@ a Python package designed to ensure seamless interoperability between
 pip install anndata_seurat_utilities
 ```
 
-Please see the Usage Guide for an example at https://github.com/denvercal1234GitHub/anndata_Seurat_Utilities
+Please see the Usage Guide for an example at https://github.com/denvercal1234GitHub/anndata_seurat_utilities
 
 More utilities (including advanced visualisation) will be provided soon. Cheers!
