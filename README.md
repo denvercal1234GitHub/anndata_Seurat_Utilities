@@ -1,5 +1,8 @@
 # sage_broccoliqn
 
+[![CI](https://github.com/denvercal1234GitHub/sage_broccoliqn/actions/workflows/ci.yml/badge.svg)](https://github.com/denvercal1234GitHub/sage_broccoliqn/actions/workflows/ci.yml)
+
+
 **Quick install**
 
 ```bash
