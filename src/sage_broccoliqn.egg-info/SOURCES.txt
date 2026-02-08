@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+setup.cfg
+src/sage_broccoliqn/__init__.py
+src/sage_broccoliqn/prepare_for_seurat.py
+src/sage_broccoliqn.egg-info/PKG-INFO
+src/sage_broccoliqn.egg-info/SOURCES.txt
+src/sage_broccoliqn.egg-info/dependency_links.txt
+src/sage_broccoliqn.egg-info/requires.txt
+src/sage_broccoliqn.egg-info/top_level.txt
+tests/test_prepare.py
